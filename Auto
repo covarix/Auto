@@ -19,6 +19,7 @@ public class Auto
     private double litergetankt;
     private double Geld;
     private double Spritpreis;
+    private double Rückgeld;
     private double Tankmoeglichkeit;
     private double Tankbedarf;
     public Auto(double pVbr, int pTankinhalt,int pTankvolumen, int pkmStand)
@@ -70,7 +71,15 @@ public class Auto
     
     public void anzeigen()
     {
+        //ab letzer aufgabe  mit sternen anstat von litern
+        //System.out.printf("Kilometerstand = %.1f Benzinstand = %.1f\n" , kmStand, Tankinhalt );
+        for(int n=1 ; n <= (Tankinhalt / 2) ; n++)
+        {
+         System.out.print("*");   
+        }
+        System.out.println("");
         System.out.printf("Kilometerstand = %.1f Benzinstand = %.1f\n" , kmStand, Tankinhalt );
+        
     }
     
     public void setzeBenzinverbrauch(double pVbr)
@@ -108,12 +117,24 @@ public class Auto
         
         if(Tankbedarf <= Tankmoeglichkeit)
         {
-         Tankinhalt += Tankbedarf;   
+            if (Tankmoeglichkeit <= Tankbedarf)
+           {
+             Tankinhalt += Tankmoeglichkeit;
+             System.out.printf("Liter getankt: = %.2f\n", Tankmoeglichkeit);
+            }
+            else
+            {
+             Tankinhalt += Tankbedarf;
+             Rückgeld = Tankmoeglichkeit - Tankbedarf;
+             Rückgeld = Rückgeld * Spritpreis;
+             System.out.printf("Der Wagen ist Vollgetankt, Rückgeld: = %.2f\n", Rückgeld); 
+            }
+         
         }
         else
         {
             Tankinhalt = Tankinhalt + Tankmoeglichkeit;
-            System.out.println("zu wenig Geld zum Volltanken. Es Wurden trotzdem " + Tankmoeglichkeit + " getankt.");
+            System.out.printf("zu wenig Geld zum Volltanken. Es Wurden trotzdem " + Tankmoeglichkeit + " getankt.");
         }
         
         
