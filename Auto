@@ -1,0 +1,143 @@
+
+/**
+ * Beschreiben Sie hier die Klasse Auto.
+ * 
+ * @author (Ihr Name) 
+ * @version (eine Versionsnummer oder ein Datum)
+ */
+public class Auto
+{
+    private double kmStand;
+    private double km;
+    private double kilometer;
+    private double benzinverbrauch;
+    private double Tankvolumen;
+    private double Tankinhalt;
+    private double benzinStand;
+    private double Reichweite;
+    private double kmMoeglich;
+    private double litergetankt;
+    private double Geld;
+    private double Spritpreis;
+    private double Tankmoeglichkeit;
+    private double Tankbedarf;
+    public Auto(double pVbr, int pTankinhalt,int pTankvolumen, int pkmStand)
+    {
+        kmStand = pkmStand;
+        Tankinhalt = pTankinhalt;
+        Tankvolumen = pTankvolumen;
+        benzinverbrauch = pVbr;
+        kmMoeglich = Tankinhalt / benzinverbrauch * 100;
+        Geld = 0;
+        Spritpreis = 0;
+        
+        
+    }
+    
+   
+    
+    public void fahren()
+    {
+        kmMoeglich = Tankinhalt / benzinverbrauch * 100;
+        if(2> kmMoeglich)
+        {
+            
+        }
+        else
+        {
+         Tankinhalt = Tankinhalt - (benzinverbrauch / 100 * 2)  ;  
+         kmStand += 2;
+        }
+    
+    
+    }
+    
+    
+    public void fahrenKM(int pkm)
+    {
+        km = pkm;
+        kmMoeglich = Tankinhalt / benzinverbrauch * 100;
+        if(km > kmMoeglich)
+        {
+            
+        }
+        else
+        {
+         Tankinhalt = Tankinhalt - (benzinverbrauch / 100 * km);
+         kmStand = kmStand + km;
+        }
+    }
+    
+    public void anzeigen()
+    {
+        System.out.printf("Kilometerstand = %.1f Benzinstand = %.1f\n" , kmStand, Tankinhalt );
+    }
+    
+    public void setzeBenzinverbrauch(double pVbr)
+    {
+        benzinverbrauch = pVbr;
+    }
+    
+    
+    public double kmMoeglich()
+    {
+        return Tankinhalt / benzinverbrauch * 100;
+    }
+    
+    public void tanken(double pliter)
+    {
+        litergetankt = pliter;
+        if (litergetankt <= (Tankvolumen - Tankinhalt))
+        {
+         Tankinhalt = Tankinhalt + litergetankt;
+        }
+        else
+        {
+            System.out.println("zu viel getankt! bitte Tankvolumen von: " + Tankvolumen + " beachten.");
+        }
+    }
+    
+    public void tankenGeld(double pSpritpreis, double pGeld)
+    {
+    
+        Geld = pGeld;
+        Spritpreis = pSpritpreis;
+        Tankmoeglichkeit = Geld / Spritpreis;
+        
+        Tankbedarf = Tankvolumen - Tankinhalt;
+        
+        if(Tankbedarf <= Tankmoeglichkeit)
+        {
+         Tankinhalt += Tankbedarf;   
+        }
+        else
+        {
+            Tankinhalt = Tankinhalt + Tankmoeglichkeit;
+            System.out.println("zu wenig Geld zum Volltanken. Es Wurden trotzdem " + Tankmoeglichkeit + " getankt.");
+        }
+        
+        
+       
+    }
+    
+     public void Fahrtsimulieren(double kilometer)
+        {
+         for (int km = 1; km <= kilometer; km++)
+            {
+             fahrenKM(1);
+             anzeigen();
+            }
+        }
+    
+    
+    
+    
+    
+    
+ 
+   
+    
+    
+    
+    
+}
